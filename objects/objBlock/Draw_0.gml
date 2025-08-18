@@ -1,0 +1,7 @@
+event_inherited();
+
+if(hp < hpMax){
+	var f = 5 - floor((hp / hpMax) * 5);
+		
+	draw_sprite_stretched(imgCrack, f, x, y, 64, 64);
+}

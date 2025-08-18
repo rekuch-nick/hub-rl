@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"worldGenMazeFrom",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"worldGenMazeFrom",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
