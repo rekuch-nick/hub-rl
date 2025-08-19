@@ -1,6 +1,6 @@
 event_inherited();
-ys = -1;
+ys = -2;
 
 while(collision_point(x, y, effText, true, true)){
-	y += 20;
+	y += 24;
 }

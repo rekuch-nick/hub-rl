@@ -1,9 +1,20 @@
 function input(){
+	icd = clamp(icd - 1, 0, icd);
+	
 	
 	if(debugPossible){
-		if(keyboard_check_pressed(vk_f1)){ debugMode = !debugMode; }
-		slideSpeed = 4 + (debugMode * 8); image_alpha = 1;
+		if(keyboard_check_pressed(vk_f1)){ 
+			debugMode = !debugMode; 
+			slideSpeed = 4 + (debugMode * 8); image_alpha = 1;
+			visionCheck();
+		}
 	}
+	
+	
+	xMouse = clamp(floor(mouse_x / 64), 0, 150 - 1);
+	yMouse = clamp(floor(mouse_y / 64), 0, 110 - 1);
+	yMouseUI = clamp(floor(device_mouse_y_to_gui(0) / 64), 0, 150 - 1);
+	xMouseUI = clamp(floor(device_mouse_y_to_gui(0) / 64), 0, 110 - 1);
 	
 	
 	xIn = 0;

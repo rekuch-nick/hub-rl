@@ -74,3 +74,25 @@ function charBumpTowards(a, b){
 	if(ySpot < b){ y += 32; }
 	if(ySpot > b){ y -= 32; }
 }
+
+
+function charInitStats() {
+	hp = 10; hpMax = 10;
+	evd = 0; aim = 0;
+	spellRes = 0;
+	def = [0, 0, 0, 0, 0, 0, 0];
+	for(var i=0; i<100; i++){ buff[i] = 0; }
+	pow = 0; natWep = 4; natEle = Ele.phys;
+	procChance = 0; natProc = noone;
+	gear = [noone, noone, noone, noone, noone, noone, noone, noone, noone, noone];
+	
+	
+	
+	
+	//...
+	takeTurnChance = 100;
+	wanderChance = 50;
+	huntChance = 80;
+	detectionRange = 6;
+	meleeCloseChance = 100;
+}

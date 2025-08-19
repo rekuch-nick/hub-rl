@@ -33,6 +33,8 @@ function worldGenBlank(){
 		bmap[a, b] = imgBlock;
 		pmap[a, b] = noone;
 		mmap[a, b] = noone;
+		memMap[a, b] = noone;
+		vmap[a, b] = false;
 	}}
 	mmap[pc.xSpot, pc.ySpot] = pc;
 	
@@ -47,6 +49,8 @@ function worldGenImpl(){
 			var o = objTile;
 			fmap[a, b] = instance_create_depth(a * 64, b * 64, layerFloor, o);
 			fmap[a, b].sprite_index = f;
+			fmap[a, b].isFloor = true;
+			fmap[a, b].xSpot = a; fmap[a, b].ySpot = b;
 		}
 		
 		var w = bmap[a, b];
@@ -54,12 +58,16 @@ function worldGenImpl(){
 			var o = objBlock;
 			bmap[a, b] = instance_create_depth(a * 64, b * 64, layerBlock, o);
 			bmap[a, b].sprite_index = w;
+			bmap[a, b].isBlock = true;
+			bmap[a, b].xSpot = a; bmap[a, b].ySpot = b;
+			
 			if(w == imgBlockCave){ bmap[a, b].breakable = true; }
 			
 			if(a == 0 || b == 0 || a == 149 || b == 109){ bmap[a, b].breakable = false; }
 		}
 	}}
 	
+	visionCheck();
 }
 
 function worldGenCostume(fImage, bImage){

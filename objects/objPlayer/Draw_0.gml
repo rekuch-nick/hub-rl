@@ -5,3 +5,5 @@ if(debugMode){
 
 
 charDrawSelf();
+
+//draw_text(x, y, string(fps));

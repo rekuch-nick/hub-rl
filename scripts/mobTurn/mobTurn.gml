@@ -1,17 +1,39 @@
 function mobTurn(){
+	if(hp < 1){ return; }
 	
-	var inMeleeWithPlayer = abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 1;
+	var inMeleeWithPlayer = (abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 1 ) or
+		(	(abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 2 ) &&
+			xSpot != pc.xSpot && ySpot != pc.ySpot );
+	
+	
 	
 	var canSeePlayer = false;
+	if(disManhat(xSpot, ySpot, pc.xSpot, pc.ySpot) <= detectionRange){
+		var line = getLine(xSpot, ySpot, pc.xSpot, pc.ySpot);
+		if(blockInsideLine(line) == 0){ canSeePlayer = true; }
+	}
 	
 	
 	
 	
 	if(inMeleeWithPlayer){
-		attack(id, pc);
-	} else if(canSeePlayer){
+		var cords = getPointCorner(xSpot, ySpot, pc.xSpot, pc.ySpot);
 		
-	} else if(true){
+		if(abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 2 && roll(meleeCloseChance) && 
+			(cords.a != xSpot or cords.b != ySpot) ){
+			charEnter(cords.a, cords.b);
+		} else {
+			attack(id, pc);
+		}
+		
+	} else if(canSeePlayer && roll(huntChance) ){
+		var nextCord = pathing(xSpot, ySpot, pc.xSpot, pc.ySpot);
+		if(nextCord != noone){
+			if(charCanEnter(nextCord.a, nextCord.b)){
+				charEnter(nextCord.a, nextCord.b);
+			}
+		}
+	} else if(roll(wanderChance)){
 		
 		var arr = [];
 		if(charCanEnter(xSpot, ySpot - 1)){ arr[array_length(arr)] = {a: xSpot, b: ySpot - 1}; }

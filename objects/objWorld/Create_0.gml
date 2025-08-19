@@ -1,5 +1,6 @@
 state = State.title;
 draw_set_font(fntPlain);
+game_set_speed(30, gamespeed_fps);
 
 layerFloor = -200;
 layerBlock = -2000;
