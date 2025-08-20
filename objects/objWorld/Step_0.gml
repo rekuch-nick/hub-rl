@@ -4,7 +4,11 @@ if(state == State.genDeep){
 
 
 
-
+if(state == State.ani){
+	if(instance_number(effThrowable) < 1){
+		ww.state = State.play;
+	}
+}
 
 if(state != State.play){ return; }
 

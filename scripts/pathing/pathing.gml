@@ -58,7 +58,8 @@ function pathing(xStart, yStart, xEnd, yEnd){
 		}
 	
 		//look in all adjacent spaces
-		for(var dir=1; dir<=8; dir++){
+		var limit = moveDiag ? 8 : 4;
+		for(var dir=1; dir<=limit; dir++){
 			if(dir == 1){ cx = xCursor; cy = yCursor - 1; }
 			if(dir == 2){ cx = xCursor + 1; cy = yCursor; }
 			if(dir == 3){ cx = xCursor; cy = yCursor + 1; }

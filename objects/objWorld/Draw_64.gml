@@ -17,7 +17,8 @@ var s = string(floor(pc.mp));
 draw_text(10, 40, s);
 
 
-var b = 10 * 64;
-for(var i=0; i<10; i++){
-	draw_sprite_stretched(imgCursor, 0, i * 64, b, 64, 64);
+
+for(var i=0; i<15; i++){
+	drawInventorySlot(i, 10, i);
 }
+

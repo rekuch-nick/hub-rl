@@ -1,5 +1,5 @@
 enum Spell {
-	throwObject,
+	throwObject, throwObjectNoBreak, throwObjectMaybeBreak,
 	callFire, warmSelf,
 }
 

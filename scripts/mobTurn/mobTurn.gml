@@ -2,7 +2,8 @@ function mobTurn(){
 	if(hp < 1){ return; }
 	
 	var inMeleeWithPlayer = (abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 1 ) or
-		(	(abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 2 ) &&
+		(	attackDiag &&
+			(abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 2 ) &&
 			xSpot != pc.xSpot && ySpot != pc.ySpot );
 	
 	

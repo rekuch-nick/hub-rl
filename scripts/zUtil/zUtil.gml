@@ -2,19 +2,22 @@ function scale(){
 	image_xscale = 2; image_yscale = 2;
 }
 
-enum State { title, play, tileSelect, tileSelectLos, pause, flee, genHub, genDeep }
+enum State { title, play, tileSelect, tileSelectLos, pause, flee, genHub, genDeep, inventory, ani, }
 
 enum Ele { phys, fire, bio, water, holy, dark, arcane }
 enum Buff { 
 	poison, burning, weak, blind,
 	haste, might, regen,
 }
-enum Slot { wep, arm, trink };
+enum Slot { wep, arm, trink, boot, spec, helm };
 enum Perk {
 	seeHP, idPotions, 
 }
 enum Target {
 	self, dir, cur, inventory,
+}
+enum Action {
+	takeExit, readSign, enterShop,
 }
 
 function inBounds(a, b){
@@ -31,4 +34,11 @@ function roll(n){
 
 function disManhat(x1, y1, x2, y2){
 	return abs(x1 - x2) + abs(y1 - y2);
+}
+
+function tileOnScreen(){
+	var cam = view_camera[0];
+	return x >= camera_get_view_x(cam) && y >= camera_get_view_y(cam) &&
+		x < camera_get_view_x(cam) + camera_get_view_width(cam) &&
+		y < camera_get_view_y(cam) + camera_get_view_height(cam);
 }

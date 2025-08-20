@@ -1,4 +1,4 @@
-if(disManhat(xSpot, ySpot, pc.xSpot, pc.ySpot) >= 24){ return; }
+if(!tileOnScreen()){ return; }
 
 if(!ww.vmap[xSpot][ySpot] && !pc.debugMode){ 
 	if(ww.memMap[xSpot, ySpot] != noone){

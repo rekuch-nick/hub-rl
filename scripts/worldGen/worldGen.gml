@@ -15,6 +15,12 @@ function worldGenDeep(){
 	//repeat(10){ worldGenReplaceBlockRandomOnWall(imgBlock, noone); }
 	
 	repeat(10){ mobSpawnRandom(); }
+	repeat(2){ itemSpawnRandom(); }
+	
+	//force stairs or crash!
+	if(!worldGenReplaceFloorCornerEmpty(imgFloor, imgFloorExit)){
+		while(!worldGenReplaceFloorEmpty(imgFloor, imgFloorExit)){}
+	};
 	
 	worldGenCostume(imgFloorCave, imgBlockCave);
 	worldGenImpl();
@@ -24,6 +30,9 @@ function worldGenDeep(){
 
 
 function worldGenBlank(){
+	with(objTile){ instance_destroy(); }
+	with(objMob){ instance_destroy(); }
+	with(objPup){ instance_destroy(); }
 	
 	xMin = 0; yMin = 0;
 	xMax = 150; yMax = 110;

@@ -19,3 +19,5 @@ slideSpeed = 8;
 justAttacked = false;
 
 
+moveDiag = false;
+attackDiag = true;

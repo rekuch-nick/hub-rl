@@ -1,8 +1,10 @@
 function visionCheck(){
 	
+	var r = 14; var rr = 10;
+	r = 6; rr = 5;
 	
-	for(var a=pc.xSpot - 14; a<=pc.xSpot + 14; a++){
-		for(var b=pc.ySpot - 10; b<=pc.ySpot + 10; b++){
+	for(var a=pc.xSpot - r; a<=pc.xSpot + r; a++){
+		for(var b=pc.ySpot - rr; b<=pc.ySpot + rr; b++){
 			if(!inBounds(a, b)){ continue; }
 			
 			ww.vmap[a, b] = false;

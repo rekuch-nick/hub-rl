@@ -5,7 +5,8 @@ function input(){
 	if(debugPossible){
 		if(keyboard_check_pressed(vk_f1)){ 
 			debugMode = !debugMode; 
-			slideSpeed = 4 + (debugMode * 8); image_alpha = 1;
+			slideSpeed = debugMode ? slideSpeedFast : slideSpeedBase;
+			image_alpha = 1;
 			visionCheck();
 		}
 	}
@@ -13,8 +14,13 @@ function input(){
 	
 	xMouse = clamp(floor(mouse_x / 64), 0, 150 - 1);
 	yMouse = clamp(floor(mouse_y / 64), 0, 110 - 1);
+	xMouseUI = clamp(floor(device_mouse_x_to_gui(0) / 64), 0, 110 - 1);
 	yMouseUI = clamp(floor(device_mouse_y_to_gui(0) / 64), 0, 150 - 1);
-	xMouseUI = clamp(floor(device_mouse_y_to_gui(0) / 64), 0, 110 - 1);
+	
+	mouseWheelIn = 0;
+	if(mouse_wheel_up()){ mouseWheelIn --; }
+	if(mouse_wheel_down()){ mouseWheelIn ++; }
+	//show_debug_message(string(xMouseUI) + ", " + string(yMouseUI))
 	
 	
 	xIn = 0;
@@ -44,9 +50,23 @@ function input(){
 	holdLM = mouse_check_button(mb_left);
 	holdRM = mouse_check_button(mb_right);
 	
-	clickNO = keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_escape);
+	clickNO = keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(vk_escape) || keyboard_check_pressed(ord("I"));
 	
+	keyIn = "";
+	if(keyboard_check_pressed(192)){ keyIn = "`"; }
+	if(keyboard_check_pressed(ord("1"))){ keyIn = "1"; }
+	if(keyboard_check_pressed(ord("2"))){ keyIn = "2"; }
+	if(keyboard_check_pressed(ord("3"))){ keyIn = "3"; }
+	if(keyboard_check_pressed(ord("4"))){ keyIn = "4"; }
+	if(keyboard_check_pressed(ord("5"))){ keyIn = "5"; }
+	if(keyboard_check_pressed(ord("6"))){ keyIn = "6"; }
+	if(keyboard_check_pressed(ord("7"))){ keyIn = "7"; }
+	if(keyboard_check_pressed(ord("8"))){ keyIn = "8"; }
+	if(keyboard_check_pressed(ord("9"))){ keyIn = "9"; }
+	if(keyboard_check_pressed(ord("0"))){ keyIn = "0"; }
 	
+	if(keyboard_check_pressed(ord("Q"))){ keyIn = "Q"; }
+	if(keyboard_check_pressed(ord("Z"))){ keyIn = "Z"; }
 	
 
 }

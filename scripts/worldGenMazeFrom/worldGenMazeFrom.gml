@@ -94,7 +94,49 @@ function worldGenReplaceBlockRandomOnWall(oldBlock, newBlock){
 	}
 }
 
+function worldGenReplaceFloorEmpty(oldFloor, newFloor){
+	var tries = 0;
+	while(tries < 1000){
+		tries ++;
+		
+		var a = irandom_range(xMin, xMax - 1);
+		var b = irandom_range(yMin, yMax - 1);
+		
+		if(bmap[a, b] != noone){ continue; }
+		if(fmap[a, b] != oldFloor){ continue; }
+		if(a == pc.xSpot && b == pc.ySpot){ continue; }
+		
+		fmap[a, b] = newFloor;
+		return true;
+	}
+	return false;
+}
 
+
+
+function worldGenReplaceFloorCornerEmpty(oldFloor, newFloor){
+	var tries = 0;
+	while(tries < 1000){
+		tries ++;
+		
+		var w = ((xMax - xMin) / 10);
+		var h = ((yMax - yMin) / 10);
+		
+		var a = irandom_range(0, w);
+		a = choose(xMax - w, xMin + w);
+		
+		var b = irandom_range(0, h);
+		b = choose(yMax - h, yMin + h);
+		
+		if(bmap[a, b] != noone){ continue; }
+		if(fmap[a, b] != oldFloor){ continue; }
+		if(disManhat(a, b, pc.xSpot, pc.ySpot)){ continue; }
+		
+		fmap[a, b] = newFloor;
+		return true;
+	}
+	return false;
+}
 
 
 
