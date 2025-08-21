@@ -11,13 +11,15 @@ xDirHeld = 0; yDirHeld = 0;
 holdSpaceTime = 0;
 input();
 charInitStats();
+//buff[Buff.sightUP] = 1;
 
+nam = "Player";
 facing = 1;
 slideSpeed = 8;
 slideSpeedFast = 16;
 slideSpeedBase = 8;
 
-
+mode = Mode.arcade;
 
 xSpot = 75;
 ySpot = 55;
@@ -43,7 +45,10 @@ for(var i=0; i<120; i++){
 
 
 bag[0] = itemConstants(Item.spellCallFire);
-//bag[1] = itemConstants(Item.rock); bag[1].quantity = 99;
+bag[1] = itemConstants(Item.sword);
+//bag[1] = itemConstants(Item.dart); bag[1].quantity = 99;
+//bag[2] = itemConstants(Item.torch); bag[2].quantity = 30;
+//bag[3] = itemConstants(Item.bomb); bag[3].quantity = 30;
 selected = 0;
 slotHelm = 94; 
 slotArmor = 99;

@@ -20,7 +20,6 @@ function input(){
 	mouseWheelIn = 0;
 	if(mouse_wheel_up()){ mouseWheelIn --; }
 	if(mouse_wheel_down()){ mouseWheelIn ++; }
-	//show_debug_message(string(xMouseUI) + ", " + string(yMouseUI))
 	
 	
 	xIn = 0;
@@ -67,6 +66,7 @@ function input(){
 	
 	if(keyboard_check_pressed(ord("Q"))){ keyIn = "Q"; }
 	if(keyboard_check_pressed(ord("Z"))){ keyIn = "Z"; }
+	if(keyboard_check_pressed(ord("R"))){ keyIn = "R"; }
 	
 
 }

@@ -19,3 +19,10 @@ for(var i=91; i<106; i++){
 if(selected != noone){
 	draw_sprite_stretched(imgCursor, 0, xSelected * 64, ySelected * 64, 64, 64);
 }
+
+
+var cords = inventoryCords(pc.xMouseUI, pc.yMouseUI);
+if(cords != noone && pc.slotUsable[cords] && pc.bag[cords] != noone){
+	draw_rectangle_color(32, 96, 544, 288, c_black, c_black, c_black, c_black, false);
+	draw_text_ext(64, 128, itemDesc(pc.bag[cords]), 32, 448);
+}

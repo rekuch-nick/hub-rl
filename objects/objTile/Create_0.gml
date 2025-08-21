@@ -3,3 +3,4 @@ image_yscale = 4;
 isFloor = false;
 isBlock = false;
 memImage = imgMemFloor;
+breakable = false;

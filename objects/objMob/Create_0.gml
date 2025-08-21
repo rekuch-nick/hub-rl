@@ -2,6 +2,7 @@ image_xscale = 4;
 image_yscale = 4;
 facing = 1;
 charInitStats();
+nam = "Imp";
 
 hp = 6;
 hpMax = 6;
@@ -17,6 +18,7 @@ xLast = xSpot; yLast = ySpot;
 
 slideSpeed = 8;
 justAttacked = false;
+inCombat = false;
 
 
 moveDiag = false;

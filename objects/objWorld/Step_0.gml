@@ -15,7 +15,10 @@ if(state != State.play){ return; }
 if(pc.timeShouldPass > 0){
 	with(objMob){
 		mobTurn();
+		buffDecay(id);
 	}
+	
+	
 	
 	pc.timeShouldPass = 0;
 }

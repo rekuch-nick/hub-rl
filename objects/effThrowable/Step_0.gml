@@ -3,6 +3,9 @@ if(firstFrame){
 	xs = cos(angle) * moveSpeed;
 	ys = sin(angle) * moveSpeed;
 	dis = point_distance(x, y, xt, yt);
+	if(pointAtTarget){
+		image_angle = point_direction(x, y, xt, yt);
+	}
 }
 
 x += xs;
@@ -20,6 +23,9 @@ if(dis <= 0){
 	}
 	if(itemDrop != noone){
 		spawnItem(itemDrop.i, itemDrop.a, itemDrop.b);
+	}
+	if(castOnLand){
+		spellCastLate(castOnLand.spell, castOnLand.caster, castOnLand.a, castOnLand.b, castOnLand.throwing);
 	}
 	instance_destroy();
 }

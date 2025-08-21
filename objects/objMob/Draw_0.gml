@@ -1,4 +1,6 @@
 if(!tileOnScreen()){ return; }
+if(!ww.vmap[xSpot][ySpot] && !pc.debugMode){ return; }
+
 charDrawSelf();
 
 

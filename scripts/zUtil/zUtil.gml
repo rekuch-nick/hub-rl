@@ -3,11 +3,14 @@ function scale(){
 }
 
 enum State { title, play, tileSelect, tileSelectLos, pause, flee, genHub, genDeep, inventory, ani, }
-
+enum Mode { arcade, story }
 enum Ele { phys, fire, bio, water, holy, dark, arcane }
 enum Buff { 
-	poison, burning, weak, blind,
-	haste, might, regen,
+	stun, burning,
+	poison, weak, blind, frozen, cold,
+	haste, might, regen, 
+	warm, sightUP, sightUPTorch, 
+	
 }
 enum Slot { wep, arm, trink, boot, spec, helm };
 enum Perk {
@@ -19,6 +22,7 @@ enum Target {
 enum Action {
 	takeExit, readSign, enterShop,
 }
+
 
 function inBounds(a, b){
 	return a >= 0 && b >= 0 && a < 150 && b < 110;
@@ -38,7 +42,7 @@ function disManhat(x1, y1, x2, y2){
 
 function tileOnScreen(){
 	var cam = view_camera[0];
-	return x >= camera_get_view_x(cam) && y >= camera_get_view_y(cam) &&
+	return x >= camera_get_view_x(cam) - 64 && y >= camera_get_view_y(cam) &&
 		x < camera_get_view_x(cam) + camera_get_view_width(cam) &&
 		y < camera_get_view_y(cam) + camera_get_view_height(cam);
 }

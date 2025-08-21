@@ -1,5 +1,14 @@
 function worldGenDeep(){
+	var sd = ww.seed;
+	random_set_seed(sd);
+	
 	pc.deep ++;
+	for(var i=0; i<pc.deep; i++){
+		for(var j=0; j<irandom_range(10, 50); j++){
+			var nn = irandom_range(1, 10);
+		}
+	}
+	
 	worldGenBlank();
 	
 	xMin = 75; xMax = 76;
@@ -10,11 +19,12 @@ function worldGenDeep(){
 	yMin = clamp(yMin - roomSize, 0, 110);
 	yMax = clamp(yMax + roomSize, 0, 110);
 	
-	worldGenPatches();
-	//worldGenMazeFrom(pc.xSpot, pc.ySpot);
-	//repeat(10){ worldGenReplaceBlockRandomOnWall(imgBlock, noone); }
+	//worldGenPatches();
+	worldGenMazeFrom(pc.xSpot, pc.ySpot);
+	repeat(10){ worldGenReplaceBlockRandomOnWall(imgBlock, noone); }
 	
-	repeat(10){ mobSpawnRandom(); }
+	repeat(8){ mobSpawnRandom(objMob); }
+	repeat(2){ mobSpawnRandom(objMobGrimp); }
 	repeat(2){ itemSpawnRandom(); }
 	
 	//force stairs or crash!
@@ -22,7 +32,7 @@ function worldGenDeep(){
 		while(!worldGenReplaceFloorEmpty(imgFloor, imgFloorExit)){}
 	};
 	
-	worldGenCostume(imgFloorCave, imgBlockCave);
+	//worldGenCostume(imgFloorCave, imgBlockCave);
 	worldGenImpl();
 	ww.state = State.play;
 }
@@ -70,7 +80,9 @@ function worldGenImpl(){
 			bmap[a, b].isBlock = true;
 			bmap[a, b].xSpot = a; bmap[a, b].ySpot = b;
 			
-			if(w == imgBlockCave){ bmap[a, b].breakable = true; }
+			bmap[a, b].breakable = true;
+			if(w == imgBlockCave){ bmap[a, b].digable = true; }
+			
 			
 			if(a == 0 || b == 0 || a == 149 || b == 109){ bmap[a, b].breakable = false; }
 		}

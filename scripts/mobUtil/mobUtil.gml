@@ -1,6 +1,8 @@
-function mobSpawnRandom(){
+function mobSpawnRandom(m){
 	var tries = 0;
-	var m = objMob;
+	if(m == noone){
+		m = objMob;
+	}
 	
 	while(tries < 1000){
 		tries ++;
@@ -15,4 +17,9 @@ function mobSpawnRandom(){
 		
 		return;
 	}
+}
+
+function playerInCombat(){
+	with(objMob){ if(inCombat){ return true; } }
+	return false;
 }

@@ -1,6 +1,6 @@
 function itemSpawnRandom(){
 	var tries = 0;
-	var i = Item.rock;
+	var i = choose(Item.rock, Item.bomb, Item.dart, Item.torch, Item.key);
 	
 	while(tries < 1000){
 		tries ++;
@@ -100,4 +100,24 @@ function playerConsumeItem(i){
 	if(pc.bag[s].quantity < 1){
 		pc.bag[s] = noone;
 	}
+}
+
+function itemDesc(i){
+	var s = "";
+	if(i == noone){ return s; }
+	
+	s += i.nam;
+	if(i.slot != noone){
+		s += "\n";
+		if(i.slot == Slot.trink){ s += "Accessory"; }
+		if(i.slot == Slot.helm){ s += "Helm"; }
+		if(i.slot == Slot.arm){ s += "Armor"; }
+		if(i.slot == Slot.boot){ s += "Greave"; }
+		if(i.slot == Slot.wep){ s += "Weapon"; }
+		if(i.slot == Slot.spec){ s += "Book"; }
+	}
+	
+	
+	
+	return s;
 }

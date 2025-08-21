@@ -63,22 +63,31 @@ if(!charInPlace()){
 		var yt = ySpot + yIn;
 		
 		if(charCanEnter(xt, yt)){
+			
 			selfAction = noone;
 			enteredTile = false;
 			timeShouldPass += 1;
-			charEnter(xt, yt);
-			playerCollectItem(xt, yt);
+			if(charCanStep()){
+				charEnter(xt, yt);
+				playerCollectItem(xt, yt);
+			} else {
+				icd = 10;
+			}
 		} else if(inBounds(xt, yt)){
 			
 			if(ww.mmap[xt, yt] != noone && ww.mmap[xt, yt].aly == -1){
 				timeShouldPass += 10;
 				icd = 10;
-				attack(pc, ww.mmap[xt, yt]);
+				if(charCanAttack()){
+					attack(pc, ww.mmap[xt, yt]);
+				}
 				
 				
 				
-			} else if(ww.bmap[xt, yt] != noone && ww.bmap[xt, yt].breakable){
-				ww.bmap[xt, yt].hp -= 15;
+			} else if(ww.bmap[xt, yt] != noone && ww.bmap[xt, yt].digable){
+				if(charCanAttack()){
+					ww.bmap[xt, yt].hp -= 15;
+				}
 				icd = 6;
 				timeShouldPass = 1;
 				if(ww.bmap[xt, yt].hp < 1){
@@ -95,8 +104,10 @@ if(!charInPlace()){
 	} else if (clickEnter || (clickLM && xMouse == xSpot && yMouse == ySpot) ){
 		if(selfAction == Action.takeExit){
 			selfAction = noone;
-			hp = clamp(hp + hpPerFloor, 0, hpMax);
-			mp = clamp(mp + mpPerFloor, 0, mpMax);
+			hp = clamp(hp + hpPerFloor + gearStats.hpPerFloor, 0, hpMax + gearStats.hp);
+			mp = clamp(mp + mpPerFloor + gearStats.mpPerFloor, 0, mpMax + gearStats.mp);
+			for(var i=0; i<120; i++){ buff[i] = 0; }
+			buffPlayerUpdate();
 			ww.state = State.genDeep;
 		}
 	} else if (keyIn == "Q"){
@@ -120,13 +131,17 @@ if(!charInPlace()){
 	
 	
 	//debug
-	//if(keyboard_check_pressed(vk_f2)){ ww.state = State.tileSelectLos; }
+	if(keyboard_check_pressed(vk_f2)){ 
+		messageSpawn(string(irandom_range(0, 10000)), c_white)
+	}
 	
 	
 } //end of char is in place
 
 
-
+if(timeShouldPass > 0){
+	buffDecay(pc);
+}
 
 
 if(keyIn == "`"){ selected = 0; }

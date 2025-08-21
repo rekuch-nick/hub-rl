@@ -4,3 +4,5 @@ firstFrame = true;
 moveSpeed = 24;
 damageCall = noone;
 itemDrop = noone;
+castOnLand = noone;
+pointAtTarget = false;

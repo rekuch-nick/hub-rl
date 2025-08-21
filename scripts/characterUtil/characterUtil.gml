@@ -77,17 +77,38 @@ function charBumpTowards(a, b){
 
 
 function charInitStats() {
+	nam = "Mob";
 	hp = 10; hpMax = 10;
+	mp = 0; mpMax = 0;
+	hpPerFloor = 0; mpPerFloor = 0;
 	evd = 0; aim = 0;
-	spellRes = 0;
+	spellResis = 0;
+	spot = 0; spellPierce = 0;
+	
 	def = [0, 0, 0, 0, 0, 0, 0];
 	for(var i=0; i<100; i++){ buff[i] = 0; }
 	pow = 0; natWep = 4; natEle = Ele.phys;
-	procChance = 0; natProc = noone;
-	gear = [noone, noone, noone, noone, noone, noone, noone, noone, noone, noone];
+	spellPow = 0;
+	procChance = 0;
+	
+	gear = [noone, noone, noone, noone, noone, noone, noone, noone, noone, noone, noone, noone, noone, noone, noone, noone];
 	
 	
+	gearStats = {
+			hp: 0, hpPerFloor: 0,
+			mp: 0, mpPerFloor: 0,
+			evd: 0, spellResis: 0,
+			aim: 0, spot: 0, spellPierce: 0,
+			pow: 0, powRange: 0, spellPow: 0,
+			procChance: 0, ele: Ele.phys,
+			def: [0, 0, 0, 0, 0, 0, 0],
+			perks: [],
+		};
 	
+	
+	for(var i=0; i<120; i++){
+		buff[i] = 0;
+	}
 	
 	//...
 	takeTurnChance = 100;
@@ -95,4 +116,16 @@ function charInitStats() {
 	huntChance = 80;
 	detectionRange = 6;
 	meleeCloseChance = 100;
+}
+
+function charCanStep(){
+	if(buff[Buff.stun] > 0){ return false; }
+	if(buff[Buff.frozen] > 0){ return false; }
+	return true;
+}
+
+function charCanAttack(){
+	if(buff[Buff.stun] > 0){ return false; }
+	if(buff[Buff.frozen] > 0){ return false; }
+	return true;
 }

@@ -1,5 +1,9 @@
 function mobTurn(){
+	
 	if(hp < 1){ return; }
+	if(buff[Buff.stun] > 0){ return; }
+	if(buff[Buff.frozen] > 0){ return; }
+	
 	
 	var inMeleeWithPlayer = (abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 1 ) or
 		(	attackDiag &&
@@ -18,6 +22,7 @@ function mobTurn(){
 	
 	
 	if(inMeleeWithPlayer){
+		inCombat = true;
 		var cords = getPointCorner(xSpot, ySpot, pc.xSpot, pc.ySpot);
 		
 		if(abs(xSpot - pc.xSpot) + abs(ySpot - pc.ySpot) == 2 && roll(meleeCloseChance) && 
@@ -28,6 +33,8 @@ function mobTurn(){
 		}
 		
 	} else if(canSeePlayer && roll(huntChance) ){
+		inCombat = true;
+		
 		var nextCord = pathing(xSpot, ySpot, pc.xSpot, pc.ySpot);
 		if(nextCord != noone){
 			if(charCanEnter(nextCord.a, nextCord.b)){
@@ -35,6 +42,8 @@ function mobTurn(){
 			}
 		}
 	} else if(roll(wanderChance)){
+		inCombat = false;
+		if(canSeePlayer){ inCombat = true; }
 		
 		var arr = [];
 		if(charCanEnter(xSpot, ySpot - 1)){ arr[array_length(arr)] = {a: xSpot, b: ySpot - 1}; }
